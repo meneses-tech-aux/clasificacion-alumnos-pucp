@@ -1,7 +1,7 @@
 import re
 from playwright.sync_api import sync_playwright, Page
 import time
-from src.model.Alumno import Alumno
+from src.model.alumno import Alumno
 
 class RobotPandora:
     def __init__(self):
@@ -96,25 +96,3 @@ class RobotPandora:
     def cerrar(self):
         if self.browser: self.browser.close()
         if self.playwright: self.playwright.stop()
-
-def main():
-    USERNAME_TEST = "W0026391"
-    PASS_TEST = "TyS.Idiomas_26_01"
-
-    # Instancia el robot
-    robot = RobotPandora()
-    
-    try:
-        robot.iniciar()
-        robot.login(USERNAME_TEST, PASS_TEST)
-        robot.clasificador_alumnos([
-            Alumno("II169157", "Inglés Básico 2", "Observación de prueba para alumno 1 II169157"),
-            Alumno("II169157", "Inglés Básico 2", "Observación de prueba para alumno 2 II169157")
-        ])
-        time.sleep(3) 
-    finally:
-        robot.cerrar()
-
-# CORRECCIÓN: Doble guion bajo en __name__ y "__main__"
-if __name__ == "__main__":
-    main()
